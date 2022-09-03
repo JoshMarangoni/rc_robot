@@ -4,29 +4,34 @@
 
 ### Requirements
 
-- remote controlled using video feed
-- streams camera video over Wifi
-- programmed in C
-- battery powered
-- discrete MOSFET motor drivers
-- all electronics contained on one PCB
-- map keys to driving direction
+- Remote controlled using video feed
+- Streams camera video over Wifi
+- Programmed in C
+- Battery powered
+- Discrete MOSFET motor drivers
+- All electronics contained on one PCB
+- Map keys to driving direction
 - 3D printed chassis that securely holds PCB, motors, batteries, and camera
 
-### Design
+### Design 1
 
 - ESP 32 microcontroller
-- 4 motors (AWD)
+- 2 wheels/motors in the rear (RWD)
+- 1 wheel/motor in the front
+
+### Design 2
+
+- Non-arduino based microcontroller
+- Discrete Wifi ASIC
 
 ### Timeline
 
-- Phase 1
+- Phase 1 (MVP)
   - Breadboard circuitry
-  - Chassis + wheels I have in garage
-  - Any motors
-  - Still ESP32 controlled
+  - Any scrap chassis, motors and wheels
   - Write initial software
-- Phase 2
-  - PCB Design
-  - Full component selection
-  - Software fine-tune
+- Phase 2 (Feature-Complete)
+  - Complete PCB design and order online
+  - Complete chassis design and print
+  - Decide on final motors and wheels
+  - Finish all software features
