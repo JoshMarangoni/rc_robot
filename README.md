@@ -1,8 +1,8 @@
 # rc_robot_firmware
 
-Remote-Controlled Robot Firmware
+## Remote-Controlled Robot Firmware
 
-Robot Project Requirements:
+### Requirements
 
 - remote controlled robot
 - streams camera video over Wifi
@@ -12,10 +12,14 @@ Robot Project Requirements:
 - Has to be on PCB
 - H-bridge from discrete components
 - Custom neatly fitted chassis
-Design:
+
+### Design
+
 - ESP 32 microcontroller
 - 4 motors (AWD)
-Timeline:
+
+### Timeline
+
 - Phase 1
   - Breadboard circuitry
   - Chassis + wheels I have in garage
