@@ -31,7 +31,13 @@
   - Any scrap chassis, motors and wheels
   - Write initial software
 - Phase 2 (Feature-Complete)
-  - Complete PCB design and order online
-  - Complete chassis design and print
+  - Complete PCB design rev1 and fabricate
+  - Complete chassis design rev1 and fabricate
   - Decide on final motors and wheels
   - Finish all software features
+- Phase 3 (Design 2)
+  - Select new microcontroller
+  - Select WIFI chip
+  - Update firmware to support new hardware
+  - Update PCB layout and fabricate
+  - Update chassis and fabricate
