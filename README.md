@@ -4,14 +4,14 @@
 
 ### Requirements
 
-- remote controlled robot
+- remote controlled using video feed
 - streams camera video over Wifi
-- Programmed in C
-- Robot must be
+- programmed in C
+- battery powered
+- discrete MOSFET motor drivers
+- all electronics contained on one PCB
 - map keys to driving direction
-- Has to be on PCB
-- H-bridge from discrete components
-- Custom neatly fitted chassis
+- 3D printed chassis that securely holds PCB, motors, batteries, and camera
 
 ### Design
 
