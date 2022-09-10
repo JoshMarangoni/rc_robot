@@ -41,3 +41,11 @@
   - Update firmware to support new hardware
   - Update PCB layout and fabricate
   - Update chassis and fabricate
+
+### Notes
+- even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
+  - meaured the 5V output of the Arduino and saw the voltage hang around 3 V sometimes dropping even lower as the motors change directions
+
+
+
+
