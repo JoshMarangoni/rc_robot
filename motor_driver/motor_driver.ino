@@ -1,8 +1,36 @@
 
-#define IN1 2
-#define IN2 3
+#define IN1 3
+#define IN2 2
 #define IN3 5
 #define IN4 4
+
+void straight() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN4, HIGH);
+  digitalWrite(IN3, LOW);
+}
+
+void left() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN4, LOW);
+  digitalWrite(IN3, HIGH);
+}
+
+void right() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN4, HIGH);
+  digitalWrite(IN3, LOW);
+}
+
+void off() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN4, LOW);
+  digitalWrite(IN3, LOW);
+}
 
 void setup() {
   Serial.begin(9600);
@@ -14,15 +42,16 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("LEFT");
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
+  off();
   delay(2000);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
+  straight();
   delay(2000);
-  Serial.println("RIGHT");
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
+  left();
+  delay(2000);
+  straight();
+  delay(2000);
+  off();
+  delay(2000);
+  right();
   delay(2000);
 }
