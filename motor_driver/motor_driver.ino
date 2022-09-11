@@ -1,8 +1,9 @@
 
-#define IN1 3
-#define IN2 2
-#define IN3 5
-#define IN4 4
+#define IN1 18
+#define IN2 19
+#define IN3 22
+#define IN4 23
+#define LED 32
 
 void straight() {
   digitalWrite(IN1, HIGH);
@@ -38,20 +39,26 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, HIGH);
   Serial.println("Motor Driver Start");
 }
 
 void loop() {
   off();
-  delay(2000);
+  delay(1000);
   straight();
-  delay(2000);
-  left();
-  delay(2000);
-  straight();
-  delay(2000);
+  delay(1000);
   off();
-  delay(2000);
+  delay(1000);
+  left();
+  delay(1000);
+  off();
+  delay(1000);
+  straight();
+  delay(1000);
+  off();
+  delay(1000);
   right();
-  delay(2000);
+  delay(1000);
 }
