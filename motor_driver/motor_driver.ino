@@ -7,8 +7,10 @@
 #define IN4 23
 #define LED 32
 
-const char* ssid = "Bubba Wi-fi Josh";
-const char* password = "bubbapassword";
+String Drive_State = "off";
+
+const char* ssid = "";
+const char* password = "";
 
 WiFiServer server(80);
 
@@ -115,6 +117,14 @@ void loop() {
               Serial.println("LED off");
               LED_State = "off";
               digitalWrite(LED, LOW);
+            } else if (header.indexOf("GET /drive/straight") >= 0) {
+              Serial.println("DRIVE STRAIGHT");
+              Drive_State = "straight";
+              straight();
+            } else if (header.indexOf("GET /drive/off") >= 0) {
+              Serial.println("END DRIVE");
+              Drive_State = "off";
+              off();
             }
 
             // Display the HTML web page
@@ -138,6 +148,8 @@ void loop() {
             } else {
               client.println("<p><a href=\"/LED/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
+            client.println("<p><a href=\"/drive/straight\"><button class=\"button\">DRIVE</button></a></p>");
+            client.println("<p><a href=\"/drive/off\"><button class=\"button\">STOP</button></a></p>");
 
             client.println("</body></html>");
 
