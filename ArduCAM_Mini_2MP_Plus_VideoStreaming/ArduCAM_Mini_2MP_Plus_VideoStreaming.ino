@@ -17,6 +17,15 @@
 // 8. If receive 0x31 ,set camera to BMP  output mode.
 // This program requires the ArduCAM V4.0.0 (or later) library and ArduCAM_Mini_5MP_Plus
 // and use Arduino IDE 1.6.8 compiler or above
+
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+
 #include <Wire.h>
 #include <ArduCAM.h>
 #include <SPI.h>
@@ -55,6 +64,8 @@ void setup() {
   Serial.begin(921600);
 #endif
   Serial.println(F("ACK CMD ArduCAM Start! END"));
+  SerialBT.begin("ESP32test"); //Bluetooth device name
+  Serial.println("The device started, now you can pair it with bluetooth!");
   // set the CS as an output:
   pinMode(CS, OUTPUT);
   digitalWrite(CS, HIGH);
@@ -315,14 +326,14 @@ void loop() {
           temp =  SPI.transfer(0x00);
           if (is_header == true)
           {
-            Serial.write(temp);
+            SerialBT.write(temp);
           }
           else if ((temp == 0xD8) & (temp_last == 0xFF))
           {
             is_header = true;
             Serial.println(F("ACK CMD IMG END"));
-            Serial.write(temp_last);
-            Serial.write(temp);
+            SerialBT.write(temp_last);
+            SerialBT.write(temp);
           }
           if ( (temp == 0xD9) && (temp_last == 0xFF) ) //If find the end ,break while,
             break;
@@ -368,11 +379,11 @@ void loop() {
       myCAM.CS_LOW();
       myCAM.set_fifo_burst();//Set fifo burst mode
 
-      Serial.write(0xFF);
-      Serial.write(0xAA);
+      SerialBT.write(0xFF);
+      SerialBT.write(0xAA);
       for (temp = 0; temp < BMPIMAGEOFFSET; temp++)
       {
-        Serial.write(pgm_read_byte(&bmp_header[temp]));
+        SerialBT.write(pgm_read_byte(&bmp_header[temp]));
       }
       char VH, VL;
       int i = 0, j = 0;
@@ -382,14 +393,14 @@ void loop() {
         {
           VH = SPI.transfer(0x00);;
           VL = SPI.transfer(0x00);;
-          Serial.write(VL);
+          SerialBT.write(VL);
           delayMicroseconds(12);
-          Serial.write(VH);
+          SerialBT.write(VH);
           delayMicroseconds(12);
         }
       }
-      Serial.write(0xBB);
-      Serial.write(0xCC);
+      SerialBT.write(0xBB);
+      SerialBT.write(0xCC);
       myCAM.CS_HIGH();
       //Clear the capture done flag
       myCAM.clear_fifo_flag();
@@ -422,14 +433,14 @@ uint8_t read_fifo_burst(ArduCAM myCAM)
     temp =  SPI.transfer(0x00);
     if (is_header == true)
     {
-      Serial.write(temp);
+      SerialBT.write(temp);
     }
     else if ((temp == 0xD8) & (temp_last == 0xFF))
     {
       is_header = true;
       Serial.println(F("ACK CMD IMG END"));
-      Serial.write(temp_last);
-      Serial.write(temp);
+      SerialBT.write(temp_last);
+      SerialBT.write(temp);
     }
     if ( (temp == 0xD9) && (temp_last == 0xFF) ) //If find the end ,break while,
       break;
