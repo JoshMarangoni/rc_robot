@@ -422,7 +422,7 @@ void loop() {
     WiFiClient client = server.available();   // Listen for incoming clients
 
     if (client)
-    {   // If a new client connects,
+    {
         currentTime = millis();
         previousTime = currentTime;
         Serial.println("New Client.");          // print a message out in the serial port
@@ -438,7 +438,7 @@ void loop() {
                 Serial.write(c);                    // print it out the serial monitor
                 header += c;
 
-                if (c == '\n') {                    // if the byte is a newline character
+                if (c == '\n'){
                     // if the current line is blank, you got two newline characters in a row.
                     // that's the end of the client HTTP request, so send a response:
                     if (currentLine.length() == 0) {
@@ -508,24 +508,25 @@ void loop() {
                         client.println();
                         // Break out of the while loop
                         break;
-                }
-                else
-                {   // if you got a newline, then clear currentLine
-                    currentLine = "";
-                }
-            }
+                  }
+                  else
+                  {   // if you got a newline, then clear currentLine
+                      currentLine = "";
+                  }
+               }
             else if (c != '\r')
             {   // if you got anything else but a carriage return character,
                 currentLine += c;      // add it to the end of the currentLine
             }
         }
+        // Clear the header variable
+        header = "";
+        // Close the connection
+        client.stop();
+        Serial.println("Client disconnected.");
+        Serial.println("");
     }
-    // Clear the header variable
-    header = "";
-    // Close the connection
-    client.stop();
-    Serial.println("Client disconnected.");
-    Serial.println("");
+  }
 }
 
 uint8_t read_fifo_burst(ArduCAM myCAM)
