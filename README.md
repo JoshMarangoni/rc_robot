@@ -45,6 +45,8 @@
 ### Notes
 - even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
   - meaured the 5V output of the Arduino and saw the voltage hang around 3 V sometimes dropping even lower as the motors change directions
+- Got video streaming over Bluetooth by changing ArduCAM's serial prints to use SerialBT, then using a BT virtual COM port for the host app
+- Tried combining all the camera source code, bluetooth serial, http webserver, and motor controls all in one program, but the program is too large for the ESP32. Further, I do not want the camera streaming software to be delayed by running motor controls and http server responses in the same control loop. I could use FreeRTOS to split up these tasks, but that seems overkill. There is no need to have all this code on one processor when I can buy an integrated esp32-CAM that I can dedicate to video streaming. Having the robot be controlled over WIFI is also superior to Bluetooth as it allows me to operate the vehicle compleletely remotely as long as I have the WIFI router's IP address and port forwarding setup.
 
 
 
