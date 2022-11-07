@@ -8,8 +8,6 @@
 
 String header;
 
-String Drive_State = "off";
-
 const char* ssid = "";
 const char* password = "";
 
@@ -119,13 +117,21 @@ void loop()
                         if (header.indexOf("GET /drive/straight") >= 0)
                         {
                             Serial.println("DRIVE STRAIGHT");
-                            Drive_State = "straight";
                             straight();
+                        }
+                        else if (header.indexOf("GET /drive/left") >= 0)
+                        {
+                            Serial.println("TURNING LEFT");
+                            left();
+                        }
+                        else if (header.indexOf("GET /drive/right") >= 0)
+                        {
+                            Serial.println("TURNING RIGHT");
+                            right();
                         }
                         else if (header.indexOf("GET /drive/off") >= 0)
                         {
                             Serial.println("END DRIVE");
-                            Drive_State = "off";
                             off();
                         }
 
