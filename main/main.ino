@@ -35,6 +35,14 @@ void left()
     digitalWrite(IN3, HIGH);
 }
 
+void back()
+{
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN4, LOW);
+    digitalWrite(IN3, HIGH);
+}
+
 void right()
 {
     digitalWrite(IN1, LOW);
@@ -114,24 +122,29 @@ void loop()
                         client.println("Connection: close");
                         client.println();
                         
-                        if (header.indexOf("GET /drive/straight") >= 0)
+                        if (header.indexOf("GET /drive/w") >= 0)
                         {
                             Serial.println("DRIVE STRAIGHT");
                             straight();
                         }
-                        else if (header.indexOf("GET /drive/left") >= 0)
+                        else if (header.indexOf("GET /drive/a") >= 0)
                         {
                             Serial.println("TURNING LEFT");
                             left();
                         }
-                        else if (header.indexOf("GET /drive/right") >= 0)
+                        else if (header.indexOf("GET /drive/s") >= 0)
+                        {
+                            Serial.println("TURNING BACKWARDS");
+                            back();
+                        }
+                        else if (header.indexOf("GET /drive/d") >= 0)
                         {
                             Serial.println("TURNING RIGHT");
                             right();
                         }
-                        else if (header.indexOf("GET /drive/off") >= 0)
+                        else if (header.indexOf("GET /drive/q") >= 0)
                         {
-                            Serial.println("END DRIVE");
+                            Serial.println("STOP");
                             off();
                         }
 
@@ -146,8 +159,11 @@ void loop()
                         client.println(".button2 {background-color: #555555;}</style></head>");
                         // Web Page Heading
                         client.println("<body><h1>ESP32 Robot Web Server</h1>");
-                        client.println("<p><a href=\"/drive/straight\"><button class=\"button\">DRIVE</button></a></p>");
-                        client.println("<p><a href=\"/drive/off\"><button class=\"button\">STOP</button></a></p>");
+                        client.println("<p><a href=\"/drive/w\"><button class=\"button\">STRAIGHT</button></a></p>");
+                        client.println("<p><a href=\"/drive/a\"><button class=\"button\">LEFT</button></a></p>");
+                        client.println("<p><a href=\"/drive/s\"><button class=\"button\">BACKWARDS</button></a></p>");
+                        client.println("<p><a href=\"/drive/d\"><button class=\"button\">RIGHT</button></a></p>");
+                        client.println("<p><a href=\"/drive/q\"><button class=\"button\">STOP</button></a></p>");
                         client.println("</body></html>");
                         // The HTTP response ends with another blank line
                         client.println();
