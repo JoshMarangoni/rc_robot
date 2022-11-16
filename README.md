@@ -1,8 +1,5 @@
 # rc_robot_firmware
-
-## Remote-Controlled Robot Firmware
-
-### Requirements
+## Requirements
 
 - Remote controlled using video feed
 - Programmed in C/C+
@@ -10,7 +7,7 @@
 - Map "WASD" keys to driving direction
 - chassis that securely holds PCB, motors, batteries, and camera
 
-### Better-ifs
+## Better-ifs
 
 - Non-arduino based coding envrionment
 - Write compilers manually
@@ -20,7 +17,7 @@
 - All electronics contained on one PCB
 - No lag between key presses and robot response (FreeRTOS?)
 
-### Design 1 (MVP) - DONE
+## Design 1 (MVP) - DONE
 
 - ESP 32 microcontroller programmed in Arduino
 - 2 wheels/motors in the rear (RWD)
@@ -28,14 +25,14 @@
 - esp32CAM for video streaming
 - Plexiglass chassis
 
-### Design 2 (Feature Complete) - In Progress
+## Design 2 (Feature Complete) - In Progress
 
 - ESP32 programmed not in arduino
 - Use custom Makefiles
 - Custom 3D printed chassis
 - PCB designed in KiCAD and fabricated by JLC PCB
 
-## Planning
+### Planning
 - get 3D printer working________________________Nov.19 (Sat)
 - receive MOSFETs_______________________________Nov.19 (Sat)
 - get H-bridges working_________________________Nov.20 (Sun)
