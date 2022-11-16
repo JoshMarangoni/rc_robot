@@ -33,15 +33,17 @@
 - PCB designed in KiCAD and fabricated by JLC PCB
 
 ### Planning
-- get 3D printer working________________________Nov.19 (Sat)
-- receive MOSFETs_______________________________Nov.19 (Sat)
-- get H-bridges working_________________________Nov.20 (Sun)
-- test singular power source with capacitor_____Nov.20 (Sun)
-- finish PCB design and send order for fab______Nov.27 (Sun)
-- make CAD drawing for chassis and 3D print_____Dec.4  (Sun)
-- receive PCB___________________________________Dec.7  (Wed)
-- solder components on PCB and test_____________Dec.11 (Sun)
-- finish all software __________________________Dec.18 (Sun)
+| Task                                         | Deadline |
+|----------------------------------------------|----------|
+| get 3D printer working | Nov.19 (Sat) |
+| receive MOSFETs | Nov.19 (Sat) |
+| get H-bridges working | Nov.20 (Sun) |
+| test singular power source with capacitor | Nov.20 (Sun) |
+| finish PCB design and send order for fab | Nov.27 (Sun) |
+| make CAD drawing for chassis and 3D print | Dec.4  (Sun) |
+| receive PCB | Dec.7  (Wed) |
+| solder components on PCB and test | Dec.11 (Sun) |
+| finish all software | Dec.18 (Sun) |
 
 ### Notes
 - even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
