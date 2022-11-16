@@ -1,0 +1,9 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+J1,Conn_01x04_Female,JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical,48.874583,-55.5875,0,top
+J2,Conn_01x04_Female,JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical,47.544583,-66.0475,-90,top
+J3,Conn_01x04_Female,JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical,48.874583,-87.5775,0,top
+J4,Conn_01x02_Female,JST_EH_B2B-EH-A_1x02_P2.50mm_Vertical,52.624583,-96.5275,0,top
+J5,Conn_01x19_Female,PinSocket_1x19_P2.54mm_Vertical,63.085418,-53.1275,0,top
+J6,Conn_02x04_Top_Bottom,PinSocket_2x04_P2.54mm_Vertical,54.83,-38.61,0,top
+J8,Conn_01x19_Female,PinSocket_1x19_P2.54mm_Vertical,83.765418,-53.1275,0,top
+R1,5k,R_Axial_DIN0614_L14.3mm_D5.7mm_P15.24mm_Horizontal,55.164583,-63.5075,-90,top
