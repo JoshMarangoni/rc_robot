@@ -1,0 +1,12 @@
+Comment,Designator,Footprint,Quantity,Part Number
+2-pin male header,J7,PinHeader_1x02_P2.54mm_Vertical,1,
+pmos transistor,"Q3,Q1,Q7,Q5",SOIC127P490X600X175-8N,4,
+19-pin female header,"J1,J2",PinSocket_1x19_P2.54mm_Vertical,2,
+nmos transistor,"Q4,Q6,Q8,Q2",SOIC127P490X600X175-8N,4,
+2-pin male header,J3,PinHeader_1x02_P2.54mm_Vertical,1,
+1k smd resistor,"R5,R8,R1,R4",R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,4,
+optoisolater,"U3,U1,U4,U2",DIP-6_W7.62mm,4,4N25
+47k smd resistor,"R3,R6,R2,R7",R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,4,
+2-pin male header,J6,PinHeader_1x02_P2.54mm_Vertical,1,
+2-pin male header,J4,PinHeader_1x02_P2.54mm_Vertical,1,
+2-pin male header,J5,PinHeader_1x02_P2.54mm_Vertical,1,
