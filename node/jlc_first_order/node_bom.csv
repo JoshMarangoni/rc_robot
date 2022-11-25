@@ -1,6 +1,0 @@
-Id,Designator,Footprint,Quantity,Designation,Supplier and ref
-1,J6,PinSocket_2x04_P2.54mm_Vertical,1,Conn_02x04_Top_Bottom,
-2,"J1,J3,J2",JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical,3,Conn_01x04_Female,
-3,R1,R_Axial_DIN0614_L14.3mm_D5.7mm_P15.24mm_Horizontal,1,5k,
-4,"J8,J5",PinSocket_1x19_P2.54mm_Vertical,2,Conn_01x19_Female,
-5,J4,JST_EH_B2B-EH-A_1x02_P2.50mm_Vertical,1,Conn_01x02_Female,
