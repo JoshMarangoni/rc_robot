@@ -1,0 +1,3 @@
+### Flash command
+
+C:\Users\joshu\Documents\ArduinoData\packages\esp32\tools\esptool_py\3.0.0/esptool.exe --chip esp32 --port COM6 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size detect 0xe000 C:\Users\joshu\Documents\ArduinoData\packages\esp32\hardware\esp32\1.0.6/tools/partitions/boot_app0.bin 0x1000 C:\Users\joshu\Documents\ArduinoData\packages\esp32\hardware\esp32\1.0.6/tools/sdk/bin/bootloader_qio_80m.bin 0x10000 C:\Users\joshu\AppData\Local\Temp\arduino_build_810982/sketch_nov27a.ino.bin 0x8000 C:\Users\joshu\AppData\Local\Temp\arduino_build_810982/sketch_nov27a.ino.partitions.bin
