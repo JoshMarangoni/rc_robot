@@ -5,10 +5,8 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 #include "sdkconfig.h"
-
 #include <esp_wifi.h>
 #include <esp_event.h>
-#include <esp_log.h>
 #include <esp_system.h>
 #include <nvs_flash.h>
 #include <sys/param.h>
@@ -19,33 +17,29 @@
 #include "esp_tls_crypto.h"
 #include <esp_http_server.h>
 
-static const char *TAG = "example";
+#define    LED_PIN       (2U)
+#define    MOTOR_IN1     (18U)
+#define    MOTOR_IN2     (19U)
+#define    MOTOR_IN3     (22U)
+#define    MOTOR_IN4     (23U)
+#define    HIGH          (1U)
+#define    LOW           (0U)
 
-#define BLINK_GPIO 2
+static const char *TAG = "INFO";
 
 static uint8_t s_led_state = 0;
 
 static void blink_led(void)
 {
-    /* Set the GPIO level according to the state (LOW or HIGH)*/
-    gpio_set_level(BLINK_GPIO, s_led_state);
+    gpio_set_level(LED_PIN, s_led_state);
 }
 
 static void configure_led(void)
 {
-    ESP_LOGI(TAG, "Example configured to blink GPIO LED!");
-    gpio_reset_pin(BLINK_GPIO);
-    /* Set the GPIO as a push/pull output */
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(LED_PIN);
+    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
+    ESP_LOGI(TAG, "On board LED initialized");
 }
-
-#define MOTOR_IN1 18
-#define MOTOR_IN2 19
-#define MOTOR_IN3 22
-#define MOTOR_IN4 23
-
-#define HIGH 1U
-#define LOW  0U
 
 static void configure_motor_pins(void)
 {
@@ -60,11 +54,13 @@ static void configure_motor_pins(void)
 
     gpio_reset_pin(MOTOR_IN4);
     gpio_set_direction(MOTOR_IN4, GPIO_MODE_OUTPUT);
+
+    ESP_LOGI(TAG, "Motors initialized");
 }
 
 static void drive_straight()
 {
-    printf("Going straight logic...\n");
+    ESP_LOGI(TAG, "Going straight");
     gpio_set_level(MOTOR_IN1, HIGH);
     gpio_set_level(MOTOR_IN2, LOW);
     gpio_set_level(MOTOR_IN4, HIGH);
@@ -73,7 +69,7 @@ static void drive_straight()
 
 static void turn_left()
 {
-    printf("Turning left logic...\n");
+    ESP_LOGI(TAG, "Turning left");
     gpio_set_level(MOTOR_IN1, HIGH);
     gpio_set_level(MOTOR_IN2, LOW);
     gpio_set_level(MOTOR_IN4, LOW);
@@ -82,7 +78,7 @@ static void turn_left()
 
 static void drive_backwards()
 {
-    printf("Going backwards logic...\n");
+    ESP_LOGI(TAG, "Going backwards");
     gpio_set_level(MOTOR_IN1, LOW);
     gpio_set_level(MOTOR_IN2, HIGH);
     gpio_set_level(MOTOR_IN4, LOW);
@@ -91,7 +87,7 @@ static void drive_backwards()
 
 static void turn_right()
 {
-    printf("Turning right logic...\n");
+    ESP_LOGI(TAG, "Turning right");
     gpio_set_level(MOTOR_IN1, LOW);
     gpio_set_level(MOTOR_IN2, HIGH);
     gpio_set_level(MOTOR_IN4, HIGH);
@@ -100,7 +96,7 @@ static void turn_right()
 
 static void stop()
 {
-    printf("Stopping logic...\n");
+    ESP_LOGI(TAG, "Stopping");
     gpio_set_level(MOTOR_IN1, LOW);
     gpio_set_level(MOTOR_IN2, LOW);
     gpio_set_level(MOTOR_IN4, LOW);
@@ -227,8 +223,6 @@ static const httpd_uri_t blink = {
     .uri       = "/blink",
     .method    = HTTP_GET,
     .handler   = get_handler,
-    /* Let's pass response string in user
-     * context to demonstrate it's usage */
     .user_ctx  = "LED TOGGLED"
 };
 
@@ -273,10 +267,8 @@ static httpd_handle_t start_webserver(void)
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.lru_purge_enable = true;
 
-    // Start the httpd server
     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
     if (httpd_start(&server, &config) == ESP_OK) {
-        // Set URI handlers
         ESP_LOGI(TAG, "Registering URI handlers");
         httpd_register_uri_handler(server, &hello);
         httpd_register_uri_handler(server, &blink);
@@ -285,11 +277,6 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &drive_s);
         httpd_register_uri_handler(server, &drive_d);
         httpd_register_uri_handler(server, &drive_q);
-        // httpd_register_uri_handler(server, &echo);
-        // httpd_register_uri_handler(server, &ctrl);
-        #if CONFIG_EXAMPLE_BASIC_AUTH
-        httpd_register_basic_auth(server);
-        #endif
         return server;
     }
 
@@ -299,7 +286,6 @@ static httpd_handle_t start_webserver(void)
 
 static esp_err_t stop_webserver(httpd_handle_t server)
 {
-    // Stop the httpd server
     return httpd_stop(server);
 }
 
@@ -329,35 +315,19 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
 
 void app_main(void)
 {
-    printf("HELLO FROM MAIN\n");
-    fflush(stdout);
+    ESP_LOGI(TAG, "APP BEGIN");
 
     configure_led();
     configure_motor_pins();
-
-    // while (1) {
-    //     ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
-    //     blink_led();
-    //     /* Toggle the LED state */
-    //     s_led_state = !s_led_state;
-    //     vTaskDelay(1000 / portTICK_PERIOD_MS);
-    // }
 
     static httpd_handle_t server = NULL;
 
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-
-    /* This helper function configures Wi-Fi or Ethernet, as selected in menuconfig.
-     * Read "Establishing Wi-Fi or Ethernet Connection" section in
-     * examples/protocols/README.md for more information about this function.
-     */
     ESP_ERROR_CHECK(example_connect());
-
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
 
-    /* Start the server for the first time */
     server = start_webserver();
 }
