@@ -39,29 +39,72 @@ static void configure_led(void)
     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
 }
 
+#define MOTOR_IN1 18
+#define MOTOR_IN2 19
+#define MOTOR_IN3 22
+#define MOTOR_IN4 23
+
+#define HIGH 1U
+#define LOW  0U
+
+static void configure_motor_pins(void)
+{
+    gpio_reset_pin(MOTOR_IN1);
+    gpio_set_direction(MOTOR_IN1, GPIO_MODE_OUTPUT);
+
+    gpio_reset_pin(MOTOR_IN2);
+    gpio_set_direction(MOTOR_IN2, GPIO_MODE_OUTPUT);
+
+    gpio_reset_pin(MOTOR_IN3);
+    gpio_set_direction(MOTOR_IN3, GPIO_MODE_OUTPUT);
+
+    gpio_reset_pin(MOTOR_IN4);
+    gpio_set_direction(MOTOR_IN4, GPIO_MODE_OUTPUT);
+}
+
 static void drive_straight()
 {
     printf("Going straight logic...\n");
+    gpio_set_level(MOTOR_IN1, HIGH);
+    gpio_set_level(MOTOR_IN2, LOW);
+    gpio_set_level(MOTOR_IN4, HIGH);
+    gpio_set_level(MOTOR_IN3, LOW);
 }
 
 static void turn_left()
 {
     printf("Turning left logic...\n");
+    gpio_set_level(MOTOR_IN1, HIGH);
+    gpio_set_level(MOTOR_IN2, LOW);
+    gpio_set_level(MOTOR_IN4, LOW);
+    gpio_set_level(MOTOR_IN3, HIGH);
 }
 
 static void drive_backwards()
 {
     printf("Going backwards logic...\n");
+    gpio_set_level(MOTOR_IN1, LOW);
+    gpio_set_level(MOTOR_IN2, HIGH);
+    gpio_set_level(MOTOR_IN4, LOW);
+    gpio_set_level(MOTOR_IN3, HIGH);
 }
 
 static void turn_right()
 {
     printf("Turning right logic...\n");
+    gpio_set_level(MOTOR_IN1, LOW);
+    gpio_set_level(MOTOR_IN2, HIGH);
+    gpio_set_level(MOTOR_IN4, HIGH);
+    gpio_set_level(MOTOR_IN3, LOW);
 }
 
 static void stop()
 {
     printf("Stopping logic...\n");
+    gpio_set_level(MOTOR_IN1, LOW);
+    gpio_set_level(MOTOR_IN2, LOW);
+    gpio_set_level(MOTOR_IN4, LOW);
+    gpio_set_level(MOTOR_IN3, LOW);
 }
 
 
@@ -290,6 +333,7 @@ void app_main(void)
     fflush(stdout);
 
     configure_led();
+    configure_motor_pins();
 
     // while (1) {
     //     ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
