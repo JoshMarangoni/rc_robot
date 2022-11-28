@@ -39,6 +39,32 @@ static void configure_led(void)
     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
 }
 
+static void drive_straight()
+{
+    printf("Going straight logic...\n");
+}
+
+static void turn_left()
+{
+    printf("Turning left logic...\n");
+}
+
+static void drive_backwards()
+{
+    printf("Going backwards logic...\n");
+}
+
+static void turn_right()
+{
+    printf("Turning right logic...\n");
+}
+
+static void stop()
+{
+    printf("Stopping logic...\n");
+}
+
+
 /* An HTTP GET handler */
 static esp_err_t get_handler(httpd_req_t *req)
 {
@@ -117,6 +143,30 @@ static esp_err_t get_handler(httpd_req_t *req)
         s_led_state = !s_led_state;
         blink_led();
     }
+    else if (strcmp(req->uri, "/drive/w") == 0)
+    {
+        drive_straight();
+    }
+    else if (strcmp(req->uri, "/drive/a") == 0)
+    {
+        turn_left();
+    }
+    else if (strcmp(req->uri, "/drive/s") == 0)
+    {
+        drive_backwards();
+    }
+    else if (strcmp(req->uri, "/drive/d") == 0)
+    {
+        turn_right();
+    }
+    else if (strcmp(req->uri, "/drive/q") == 0)
+    {
+        stop();
+    }
+    else
+    {
+        printf("UNKNOWN REQUEST\n");
+    }
 
     return ESP_OK;
 }
@@ -139,6 +189,41 @@ static const httpd_uri_t blink = {
     .user_ctx  = "LED TOGGLED"
 };
 
+static const httpd_uri_t drive_w = {
+    .uri       = "/drive/w",
+    .method    = HTTP_GET,
+    .handler   = get_handler,
+    .user_ctx  = "DRIVING STRAIGHT"
+};
+
+static const httpd_uri_t drive_a = {
+    .uri       = "/drive/a",
+    .method    = HTTP_GET,
+    .handler   = get_handler,
+    .user_ctx  = "TURNING LEFT"
+};
+
+static const httpd_uri_t drive_s = {
+    .uri       = "/drive/s",
+    .method    = HTTP_GET,
+    .handler   = get_handler,
+    .user_ctx  = "DRIVING BACKWARDS"
+};
+
+static const httpd_uri_t drive_d = {
+    .uri       = "/drive/d",
+    .method    = HTTP_GET,
+    .handler   = get_handler,
+    .user_ctx  = "TURNING RIGHT"
+};
+
+static const httpd_uri_t drive_q = {
+    .uri       = "/drive/q",
+    .method    = HTTP_GET,
+    .handler   = get_handler,
+    .user_ctx  = "STOPPING"
+};
+
 static httpd_handle_t start_webserver(void)
 {
     httpd_handle_t server = NULL;
@@ -152,6 +237,11 @@ static httpd_handle_t start_webserver(void)
         ESP_LOGI(TAG, "Registering URI handlers");
         httpd_register_uri_handler(server, &hello);
         httpd_register_uri_handler(server, &blink);
+        httpd_register_uri_handler(server, &drive_w);
+        httpd_register_uri_handler(server, &drive_a);
+        httpd_register_uri_handler(server, &drive_s);
+        httpd_register_uri_handler(server, &drive_d);
+        httpd_register_uri_handler(server, &drive_q);
         // httpd_register_uri_handler(server, &echo);
         // httpd_register_uri_handler(server, &ctrl);
         #if CONFIG_EXAMPLE_BASIC_AUTH
