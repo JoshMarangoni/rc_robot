@@ -21,24 +21,23 @@
 
 static const char *TAG = "example";
 
-// #define BLINK_GPIO 2
+#define BLINK_GPIO 2
 
-// static uint8_t s_led_state = 0;
+static uint8_t s_led_state = 0;
 
-// static void blink_led(void)
-// {
-//     /* Set the GPIO level according to the state (LOW or HIGH)*/
-//     gpio_set_level(BLINK_GPIO, s_led_state);
-// }
+static void blink_led(void)
+{
+    /* Set the GPIO level according to the state (LOW or HIGH)*/
+    gpio_set_level(BLINK_GPIO, s_led_state);
+}
 
-// static void configure_led(void)
-// {
-//     ESP_LOGI(TAG, "Example configured to blink GPIO LED!");
-//     gpio_reset_pin(BLINK_GPIO);
-//     /* Set the GPIO as a push/pull output */
-//     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-// }
-
+static void configure_led(void)
+{
+    ESP_LOGI(TAG, "Example configured to blink GPIO LED!");
+    gpio_reset_pin(BLINK_GPIO);
+    /* Set the GPIO as a push/pull output */
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+}
 
 /* An HTTP GET handler */
 static esp_err_t hello_get_handler(httpd_req_t *req)
@@ -112,6 +111,11 @@ static esp_err_t hello_get_handler(httpd_req_t *req)
     if (httpd_req_get_hdr_value_len(req, "Host") == 0) {
         ESP_LOGI(TAG, "Request headers lost");
     }
+
+    blink_led();
+    /* Toggle the LED state */
+    s_led_state = !s_led_state;
+
     return ESP_OK;
 }
 
@@ -121,7 +125,7 @@ static const httpd_uri_t hello = {
     .handler   = hello_get_handler,
     /* Let's pass response string in user
      * context to demonstrate it's usage */
-    .user_ctx  = "Hello World!"
+    .user_ctx  = "LED TOGGLED"
 };
 
 static httpd_handle_t start_webserver(void)
@@ -183,7 +187,7 @@ void app_main(void)
     printf("HELLO FROM MAIN\n");
     fflush(stdout);
 
-    // configure_led();
+    configure_led();
 
     // while (1) {
     //     ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
