@@ -10,11 +10,14 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 
 - Remote controlled using video feed
 - Programmed in C/C+
-- Non-arduino based coding envrionment
 - Battery powered
-- All electronics contained on one PCB
 - Map "WASD" keys to driving direction
+
+## Better-ifs
+
+- Non-arduino based coding envrionment
 - Custom 3D printed chassis
+- All electronics contained on one PCB
 - Lag between key presses and robot response < 0.5 s
 
 ## Design 1 (MVP) - DONE
@@ -25,14 +28,13 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 - esp32CAM for video streaming
 - Plexiglass chassis
 
-## Design 2 (Feature Complete) - In Progress
+## Design 2 (Feature Complete) - In Done
 
-- ESP32 programmed not in arduino
-- Use custom Makefiles
+- ESP32 programmed in Expressif IoT Development Framework
 - Custom 3D printed chassis
 - PCB designed in KiCAD and fabricated by JLC PCB
 
-### Planning
+### Planning (created after completing Design 1)
 | Task                                         | Deadline |
 |----------------------------------------------|----------|
 | get 3D printer working | Nov.19 (Sat) |
