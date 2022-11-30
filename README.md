@@ -1,4 +1,12 @@
-# rc_robot_firmware
+# rc_robot
+
+## Project Motivation
+
+NASA's Perseverance rover is a remote controllable rover designed to explore the surface of the Red Planet. The rover primarily uses an ultra-high frequency antenna to communicate with Earth. Data is relayed through Mars satellites back to Earth where engineers can monitor the robot's trajectory and speed.
+
+Although my robot is not designed for Mars, it is designed to explore the outer reaches of my kitchen and living room while I am comfortably relaxing in my bedroom. Instead of orbitting satellites I use my WiFi network and communiate with my robot using http requests. This project is intended to emulate a remote controlled rover such as Perserverence, using my own circuit and software designs.
+
+
 ## Requirements
 
 - Remote controlled using video feed
