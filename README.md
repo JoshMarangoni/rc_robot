@@ -8,6 +8,7 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 
 ## Requirements
 
+- Must be able to drive in any direction
 - Remote controlled using video feed
 - Programmed in C/C+
 - Battery powered
