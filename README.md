@@ -4,26 +4,18 @@
 
 NASA's Perseverance rover is a remote controllable rover designed to explore the surface of the Red Planet. The rover primarily uses an ultra-high frequency antenna to communicate with Earth. Data is relayed through Mars satellites back to Earth where engineers can monitor the robot's trajectory and speed.
 
-Although my robot is not designed for Mars, it is designed to explore the outer reaches of my kitchen and living room while I am comfortably relaxing in my bedroom. Instead of orbitting satellites I use my WiFi network and communiate with my robot using http requests. This project is intended to emulate a remote controlled rover such as Perserverence, using my own circuit and software designs.
-
+Although my robot is not designed for Mars, it is designed to explore the outer reaches of my kitchen and living room while I am comfortably relaxing in my bedroom. Instead of orbitting satellites I use my WiFi network and communicate with my robot using http requests. This project is intended to emulate a remote controlled rover such as Perserverence, using my own circuit and software designs.
 
 ## Requirements
 
 - Remote controlled using video feed
 - Programmed in C/C+
-- Battery powered
-- Map "WASD" keys to driving direction
-- chassis that securely holds PCB, motors, batteries, and camera
-
-## Better-ifs
-
 - Non-arduino based coding envrionment
-- Write compilers manually
-- Custom 3D printed chassis
-- Programmed in C/C+
-- Single power source
+- Battery powered
 - All electronics contained on one PCB
-- No lag between key presses and robot response (FreeRTOS?)
+- Map "WASD" keys to driving direction
+- Custom 3D printed chassis
+- Lag between key presses and robot response < 0.5 s
 
 ## Design 1 (MVP) - DONE
 
