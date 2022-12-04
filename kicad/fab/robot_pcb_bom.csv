@@ -1,0 +1,12 @@
+Comment,Designator,Package,Quantity,Designation,LCSC Part Number
+2-pin male header,J7,PinHeader_1x02_P2.54mm_Vertical,1,esp32 pwr,
+"pmos transistor (30V,4A)","Q3,Q1,Q7,Q5",SOT-23-3,4,AO3401A,C15127
+19-pin female header,"J1,J2",PinSocket_1x19_P2.54mm_Vertical,2,Conn_01x19_Female,
+"nmos transistor (30V, 5A)","Q4,Q6,Q8,Q2",SOT-23-3,4,IRLML6344TRPBF,C53550
+2-pin male header,J3,PinHeader_1x02_P2.54mm_Vertical,1,esp32 cam,
+1k smd (0805) resistor,"R5,R8,R1,R4",R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,4,1k,
+optoisolater,"U3,U1,U4,U2",DIP-6_W7.62mm,4,4N25,C115480
+47k smd (0805) resistor,"R3,R6,R2,R7",R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,4,47k,
+2-pin male header,J6,PinHeader_1x02_P2.54mm_Vertical,1,motor pwr,
+2-pin male header,J4,PinHeader_1x02_P2.54mm_Vertical,1,motor1,
+2-pin male header,J5,PinHeader_1x02_P2.54mm_Vertical,1,motor2,

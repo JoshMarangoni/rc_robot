@@ -1,0 +1,28 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+J1,Conn_01x19_Female,PinSocket_1x19_P2.54mm_Vertical,29.21,60.315,0,top
+J2,Conn_01x19_Female,PinSocket_1x19_P2.54mm_Vertical,52.01,60.325,0,top
+J3,esp32 cam,PinHeader_1x02_P2.54mm_Vertical,31.75,66.675,-90,top
+J4,motor1,PinHeader_1x02_P2.54mm_Vertical,17.78,39.878,0,top
+J5,motor2,PinHeader_1x02_P2.54mm_Vertical,64.008,37.846,0,top
+J6,motor pwr,PinHeader_1x02_P2.54mm_Vertical,49.53,66.675,90,top
+J7,esp32 pwr,PinHeader_1x02_P2.54mm_Vertical,22.601,8.382,90,top
+Q1,AO3401A,SOT-23-3,24.13,57.15,180,top
+Q2,IRLML6344TRPBF,SOT-23-3,17.78,57.15,180,top
+Q3,AO3401A,SOT-23-3,23.876,16.476,-90,top
+Q4,IRLML6344TRPBF,SOT-23-3,18.354,16.476,-90,top
+Q5,AO3401A,SOT-23-3,59.944,60.198,-90,top
+Q6,IRLML6344TRPBF,SOT-23-3,59.944,55.626,-90,top
+Q7,AO3401A,SOT-23-3,66.04,15.875,180,top
+Q8,IRLML6344TRPBF,SOT-23-3,59.055,15.875,0,top
+R1,1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,22.86,40.894,-90,top
+R2,47k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,21.336,53.594,0,top
+R3,47k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,20.828,21.082,0,top
+R4,1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,22.86,36.322,90,top
+R5,1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,57.388,40.386,180,top
+R6,47k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,59.944,66.294,180,top
+R7,47k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,61.976,21.082,0,top
+R8,1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,58.42,35.306,90,top
+U1,4N25,DIP-6_W7.62mm,24.12,44.973,180,top
+U2,4N25,DIP-6_W7.62mm,22.845,31.994,-90,top
+U3,4N25,DIP-6_W7.62mm,58.435,43.698,90,top
+U4,4N25,DIP-6_W7.62mm,58.176,30.719,0,top
