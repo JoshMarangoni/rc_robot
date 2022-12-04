@@ -1,6 +1,6 @@
 
-#define M1 19
-#define M2 23
+#define M1 25
+#define M2 26
 
 void setup()
 {
