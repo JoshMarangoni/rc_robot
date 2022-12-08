@@ -1,7 +1,7 @@
 ## Flashing ESP-32 from the command line
 
 Checkout my YouTube video on how to flash from the command line:
-https://www.youtube.com/watch?v=xEohqTJ2WvU&t=1s
+https://www.youtube.com/watch?v=wDi58Najcs8&t=9s
 
 ### esp-idf commands
 
