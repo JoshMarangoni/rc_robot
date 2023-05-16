@@ -20,8 +20,8 @@
 #define    LED_PIN       (2U)
 #define    MOTOR_IN1     (18U)
 #define    MOTOR_IN2     (19U)
-#define    MOTOR_IN3     (22U)
-#define    MOTOR_IN4     (23U)
+#define    MOTOR_IN3     (25U)
+#define    MOTOR_IN4     (26U)
 #define    HIGH          (1U)
 #define    LOW           (0U)
 
