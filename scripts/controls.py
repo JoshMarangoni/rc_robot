@@ -5,15 +5,15 @@ import asyncio
 
 print("RC ROBOT CONTROL TERMINAL")
 
-async def sendRequest(endpoint):
+async def sendAsyncRequest(endpoint):
     async with aiohttp.ClientSession() as session:
-        url = f"http://192.168.86.83/drive/{endpoint}"
+        url = f"http://192.168.86.29:80/drive/{endpoint}"
         async with session.get(url) as resp:
             ret = await resp.json
             print(ret)
 
 def sendSyncRequest(endpoint):
-    url = f"http://192.168.86.83/drive/{endpoint}"
+    url = f"http://192.168.86.29:80/drive/{endpoint}"
     resp = requests.get(url)
     print(resp)
 
