@@ -1,11 +1,11 @@
 
-import requests
 import aiohttp
 import asyncio
 import msvcrt
 
 ESP32_DRIVE_API = "http://192.168.86.29:80/drive"
 
+print()
 print("###############################################")
 print("########## RC ROBOT CONTROL TERMINAL ##########")
 print("###############################################")
@@ -42,7 +42,7 @@ def main():
                 raise KeyboardInterrupt
             else:
                 input_chars.append(char)
-                print(char, end='', flush=True)  # Echo the character back to the console
+                print(char, end='', flush=True) # Echo the character back to the console
                 loop = asyncio.get_event_loop()
                 loop.run_until_complete(sendRobotCommand(char))
 
