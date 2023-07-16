@@ -29,7 +29,7 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 - esp32CAM for video streaming
 - Plexiglass chassis
 
-## Design 2 (Feature Complete) - In Progress
+## Design 2 (Feature Complete) - Done
 
 - ESP32 programmed in Expressif IoT Development Framework
 - Custom 3D printed chassis
