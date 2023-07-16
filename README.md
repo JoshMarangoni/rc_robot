@@ -17,7 +17,6 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 ## Better-ifs
 
 - Non-arduino based coding envrionment
-- Custom 3D printed chassis
 - All electronics contained on one PCB
 - Lag between key presses and robot response < 0.5 s
 
@@ -32,8 +31,8 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 ## Design 2 (Feature Complete) - Done
 
 - ESP32 programmed in Expressif IoT Development Framework
-- Custom 3D printed chassis
 - PCB designed in KiCAD and fabricated by JLC PCB
+- control terminal for WASD keys written in Python
 
 ### Planning (created after completing Design 1)
 | Task                                         | Deadline |
