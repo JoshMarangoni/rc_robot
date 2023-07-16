@@ -49,7 +49,8 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 | finish all software | Dec.18 (Sun) |
 
 ### Demo
-https://www.youtube.com/watch?v=ufaAewCI-w4
+[![Remote Control Robot with ChatGPT and Embedded Web Server on ESP32](https://img.youtube.com/vi/ufaAewCI-w4/0.jpg)](https://www.youtube.com/watch?v=ufaAewCI-w4)
+
 
 ### Notes
 - even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
