@@ -48,6 +48,8 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 | solder components on PCB and test | Dec.11 (Sun) |
 | finish all software | Dec.18 (Sun) |
 
+https://www.youtube.com/watch?v=ufaAewCI-w4
+
 ### Notes
 - even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
   - meaured the 5V output of the Arduino and saw the voltage hang around 3 V sometimes dropping even lower as the motors change directions. I need to either put the motors on a separate power supply or use large capacitors to buffer voltage spikes
