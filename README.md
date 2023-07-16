@@ -48,7 +48,7 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 | solder components on PCB and test | Dec.11 (Sun) |
 | finish all software | Dec.18 (Sun) |
 
-### Demo
+### Demo YouTube Video
 [![Remote Control Robot with ChatGPT and Embedded Web Server on ESP32](https://img.youtube.com/vi/ufaAewCI-w4/0.jpg)](https://www.youtube.com/watch?v=ufaAewCI-w4)
 
 
