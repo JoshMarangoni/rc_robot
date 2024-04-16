@@ -9,15 +9,15 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 ## Requirements
 
 - Must be able to drive in any direction
-- Remote controlled using video feed
 - Programmed in C/C+
+- Non-arduino based coding envrionment
 - Battery powered
 - Map "WASD" keys to driving direction
 
-## Better-ifs
+## Bonus features
 
-- Non-arduino based coding envrionment
 - All electronics contained on one PCB
+- Remote controlled using video feed
 - Lag between key presses and robot response < 0.5 s
 
 ## Design 1 (MVP) - DONE
@@ -47,11 +47,18 @@ Although my robot is not designed for Mars, it is designed to explore the outer 
 | solder components on PCB and test | Dec.11 (Sun) |
 | finish all software | Dec.18 (Sun) |
 
-### Demo YouTube Video
+### Demo YouTube Videos
+[![H bridge Circuit Theory - 2 Wire Input Design](https://img.youtube.com/vi/d1yoUQiy7Vs/0.jpg)](https://www.youtube.com/watch?v=d1yoUQiy7Vs)
+
+[![Making an H Bridge PCB in KiCad from scratch!](https://img.youtube.com/vi/Di--UKmRp28/0.jpg)](https://www.youtube.com/watch?v=Di--UKmRp28)
+
+[![Assembling and Testing ESP32 H Bridge PCB](https://img.youtube.com/vi/TdYsxLpm71Q/0.jpg)](https://www.youtube.com/watch?v=TdYsxLpm71Q)
+
 [![Remote Control Robot with ChatGPT and Embedded Web Server on ESP32](https://img.youtube.com/vi/ufaAewCI-w4/0.jpg)](https://www.youtube.com/watch?v=ufaAewCI-w4)
 
 
-### Notes
+
+### Key Learnings
 - even though a motor draws 0.2 A while running it can produce a stall current of 2+ A, causing the driver to underpower the arduino
   - meaured the 5V output of the Arduino and saw the voltage hang around 3 V sometimes dropping even lower as the motors change directions. I need to either put the motors on a separate power supply or use large capacitors to buffer voltage spikes
   - After doing some research I found out that the larger the current draw is from the battery, the lower the batteries output voltage will be due to the internal voltage drop. Batteries have an internal resistance, so the larger the current out of the battery, the larger the internal drop, and the lower the output voltage will be. Hypothesis, to solve this, use batteries with larger capacity, such as two 18650's in series, which have a combined 2800mAh capacity. Results: it worked!
