@@ -3,7 +3,7 @@ import aiohttp
 import asyncio
 import msvcrt
 
-ESP32_DRIVE_API = "http://192.168.86.29:80/drive"
+ESP32_DRIVE_API = "http://192.168.86.22:80/drive"
 
 print()
 print("###############################################")

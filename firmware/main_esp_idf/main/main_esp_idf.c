@@ -18,10 +18,15 @@
 #include <esp_http_server.h>
 
 #define    LED_PIN       (2U)
-#define    MOTOR_IN1     (18U)
-#define    MOTOR_IN2     (19U)
-#define    MOTOR_IN3     (25U)
-#define    MOTOR_IN4     (26U)
+
+// left motor
+#define    MOTOR_PIN_M11 (25U)
+#define    MOTOR_PIN_M12 (26U)
+
+// right motor
+#define    MOTOR_PIN_M21 (19U)
+#define    MOTOR_PIN_M22 (18U)
+
 #define    HIGH          (1U)
 #define    LOW           (0U)
 
@@ -43,17 +48,17 @@ static void configure_led(void)
 
 static void configure_motor_pins(void)
 {
-    gpio_reset_pin(MOTOR_IN1);
-    gpio_set_direction(MOTOR_IN1, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(MOTOR_PIN_M11);
+    gpio_set_direction(MOTOR_PIN_M11, GPIO_MODE_OUTPUT);
 
-    gpio_reset_pin(MOTOR_IN2);
-    gpio_set_direction(MOTOR_IN2, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(MOTOR_PIN_M12);
+    gpio_set_direction(MOTOR_PIN_M12, GPIO_MODE_OUTPUT);
 
-    gpio_reset_pin(MOTOR_IN3);
-    gpio_set_direction(MOTOR_IN3, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(MOTOR_PIN_M21);
+    gpio_set_direction(MOTOR_PIN_M21, GPIO_MODE_OUTPUT);
 
-    gpio_reset_pin(MOTOR_IN4);
-    gpio_set_direction(MOTOR_IN4, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(MOTOR_PIN_M22);
+    gpio_set_direction(MOTOR_PIN_M22, GPIO_MODE_OUTPUT);
 
     ESP_LOGI(TAG, "Motors initialized");
 }
@@ -61,46 +66,46 @@ static void configure_motor_pins(void)
 static void drive_straight()
 {
     ESP_LOGI(TAG, "Going straight");
-    gpio_set_level(MOTOR_IN1, HIGH);
-    gpio_set_level(MOTOR_IN2, LOW);
-    gpio_set_level(MOTOR_IN4, HIGH);
-    gpio_set_level(MOTOR_IN3, LOW);
+    gpio_set_level(MOTOR_PIN_M11, LOW);
+    gpio_set_level(MOTOR_PIN_M12, HIGH);
+    gpio_set_level(MOTOR_PIN_M21, LOW);
+    gpio_set_level(MOTOR_PIN_M22, HIGH);
 }
 
 static void turn_left()
 {
     ESP_LOGI(TAG, "Turning left");
-    gpio_set_level(MOTOR_IN1, HIGH);
-    gpio_set_level(MOTOR_IN2, LOW);
-    gpio_set_level(MOTOR_IN4, LOW);
-    gpio_set_level(MOTOR_IN3, HIGH);
+    gpio_set_level(MOTOR_PIN_M11, LOW);
+    gpio_set_level(MOTOR_PIN_M12, LOW);
+    gpio_set_level(MOTOR_PIN_M21, LOW);
+    gpio_set_level(MOTOR_PIN_M22, HIGH);
 }
 
 static void drive_backwards()
 {
     ESP_LOGI(TAG, "Going backwards");
-    gpio_set_level(MOTOR_IN1, LOW);
-    gpio_set_level(MOTOR_IN2, HIGH);
-    gpio_set_level(MOTOR_IN4, LOW);
-    gpio_set_level(MOTOR_IN3, HIGH);
+    gpio_set_level(MOTOR_PIN_M11, HIGH);
+    gpio_set_level(MOTOR_PIN_M12, LOW);
+    gpio_set_level(MOTOR_PIN_M21, HIGH);
+    gpio_set_level(MOTOR_PIN_M22, LOW);
 }
 
 static void turn_right()
 {
     ESP_LOGI(TAG, "Turning right");
-    gpio_set_level(MOTOR_IN1, LOW);
-    gpio_set_level(MOTOR_IN2, HIGH);
-    gpio_set_level(MOTOR_IN4, HIGH);
-    gpio_set_level(MOTOR_IN3, LOW);
+    gpio_set_level(MOTOR_PIN_M11, LOW);
+    gpio_set_level(MOTOR_PIN_M12, HIGH);
+    gpio_set_level(MOTOR_PIN_M21, LOW);
+    gpio_set_level(MOTOR_PIN_M22, LOW);
 }
 
 static void stop()
 {
-    ESP_LOGI(TAG, "Stopping");
-    gpio_set_level(MOTOR_IN1, LOW);
-    gpio_set_level(MOTOR_IN2, LOW);
-    gpio_set_level(MOTOR_IN4, LOW);
-    gpio_set_level(MOTOR_IN3, LOW);
+    // ESP_LOGI(TAG, "Stopping");
+    gpio_set_level(MOTOR_PIN_M11, LOW);
+    gpio_set_level(MOTOR_PIN_M12, LOW);
+    gpio_set_level(MOTOR_PIN_M21, LOW);
+    gpio_set_level(MOTOR_PIN_M22, LOW);
 }
 
 
