@@ -16,13 +16,13 @@
 #include "protocol_examples_common.h"
 #include "sdkconfig.h"
 
-#define    LED_PIN       (2U)
-#define    MOTOR_PIN_M11 (25U)
-#define    MOTOR_PIN_M12 (26U)
-#define    MOTOR_PIN_M21 (19U)
-#define    MOTOR_PIN_M22 (18U)
-#define    HIGH          (1U)
-#define    LOW           (0U)
+#define  LED_PIN         2U
+#define  MOTOR_PIN_M11   25U
+#define  MOTOR_PIN_M12   26U
+#define  MOTOR_PIN_M21   19U
+#define  MOTOR_PIN_M22   18U
+#define  HIGH            1U
+#define  LOW             0U
 
 static const char *TAG = "INFO";
 static uint8_t s_led_state = 0;
@@ -199,16 +199,16 @@ static const httpd_uri_t drive_q = {
     .user_ctx  = "STOPPING"
 };
 
-static httpd_handle_t start_webserver(void)
+httpd_handle_t start_webserver(void)
 {
-    httpd_handle_t server = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-    config.lru_purge_enable = true;
+    httpd_handle_t server = NULL;
 
     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
-    if (httpd_start(&server, &config) == ESP_OK)
+    bool serverStarted = httpd_start(&server, &config) == ESP_OK;
+
+    if (serverStarted)
     {
-        ESP_LOGI(TAG, "Registering URI handlers");
         httpd_register_uri_handler(server, &hello);
         httpd_register_uri_handler(server, &blink);
         httpd_register_uri_handler(server, &drive_w);
@@ -216,11 +216,13 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &drive_s);
         httpd_register_uri_handler(server, &drive_d);
         httpd_register_uri_handler(server, &drive_q);
-        return server;
+    }
+    else
+    {
+        ESP_LOGI(TAG, "Error starting server!");
     }
 
-    ESP_LOGI(TAG, "Error starting server!");
-    return NULL;
+    return server;
 }
 
 static esp_err_t stop_webserver(httpd_handle_t server)
