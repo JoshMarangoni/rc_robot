@@ -1,21 +1,21 @@
-
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/gpio.h"
-#include "esp_log.h"
-#include "sdkconfig.h"
-#include <esp_wifi.h>
 #include <esp_event.h>
 #include <esp_system.h>
-#include <nvs_flash.h>
+#include <esp_wifi.h>
+#include <stdio.h>
 #include <sys/param.h>
-#include "nvs_flash.h"
-#include "esp_netif.h"
+
+#include "driver/gpio.h"
 #include "esp_eth.h"
-#include "protocol_examples_common.h"
+#include "esp_http_server.h"
+#include "esp_log.h"
+#include "esp_netif.h"
 #include "esp_tls_crypto.h"
-#include <esp_http_server.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "nvs_flash.h"
+#include "protocol_examples_common.h"
+#include "sdkconfig.h"
+
 
 #define    LED_PIN       (2U)
 
@@ -112,46 +112,57 @@ static void stop()
 /* An HTTP GET handler */
 static esp_err_t get_handler(httpd_req_t *req)
 {
-    /* Set some custom headers */
-    httpd_resp_set_hdr(req, "Custom-Header-1", "Custom-Value-1");
-    httpd_resp_set_hdr(req, "Custom-Header-2", "Custom-Value-2");
-
-    /* Send response with custom headers and body set as the
-     * string passed in user context*/
-    const char* resp_str = (const char*) req->user_ctx;
-    httpd_resp_send(req, resp_str, HTTPD_RESP_USE_STRLEN);
+    esp_err_t ret;
+    char* response_data = "OK";  // Default response data
+    char* response_code = "200";     // Default HTTP status code
 
     if (strcmp(req->uri, "/blink") == 0)
     {
         s_led_state = !s_led_state;
         blink_led();
+        response_data = "Blink toggled";
     }
     else if (strcmp(req->uri, "/drive/w") == 0)
     {
         drive_straight();
+        response_data = "Driving straight";
     }
     else if (strcmp(req->uri, "/drive/a") == 0)
     {
         turn_left();
+        response_data = "Turning left";
     }
     else if (strcmp(req->uri, "/drive/s") == 0)
     {
         drive_backwards();
+        response_data = "Driving backwards";
     }
     else if (strcmp(req->uri, "/drive/d") == 0)
     {
         turn_right();
+        response_data = "Turning right";
     }
     else if (strcmp(req->uri, "/drive/q") == 0)
     {
         stop();
+        response_data = "Stopped";
     }
     else
     {
-        printf("UNKNOWN REQUEST\n");
+        response_data = "Unknown Request";
+        response_code = "404";  // Not found status code
     }
 
-    return ESP_OK;
+    // Note: client should be setup to not rely on a response,
+    // but it is helpful to have a response nonetheless.
+    httpd_resp_set_status(req, response_code);
+    ret = httpd_resp_send(req, response_data, HTTPD_RESP_USE_STRLEN);
+    if (ret != ESP_OK)
+    {
+        ESP_LOGE("HTTPD", "Failed to send response: %s", esp_err_to_name(ret));
+    }
+
+    return ret;
 }
 
 static const httpd_uri_t hello = {
