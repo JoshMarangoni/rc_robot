@@ -16,22 +16,15 @@
 #include "protocol_examples_common.h"
 #include "sdkconfig.h"
 
-
 #define    LED_PIN       (2U)
-
-// left motor
 #define    MOTOR_PIN_M11 (25U)
 #define    MOTOR_PIN_M12 (26U)
-
-// right motor
 #define    MOTOR_PIN_M21 (19U)
 #define    MOTOR_PIN_M22 (18U)
-
 #define    HIGH          (1U)
 #define    LOW           (0U)
 
 static const char *TAG = "INFO";
-
 static uint8_t s_led_state = 0;
 
 static void blink_led(void)
@@ -101,51 +94,43 @@ static void turn_right()
 
 static void stop()
 {
-    // ESP_LOGI(TAG, "Stopping");
+    ESP_LOGI(TAG, "Stopping");
     gpio_set_level(MOTOR_PIN_M11, LOW);
     gpio_set_level(MOTOR_PIN_M12, LOW);
     gpio_set_level(MOTOR_PIN_M21, LOW);
     gpio_set_level(MOTOR_PIN_M22, LOW);
 }
 
-
-/* An HTTP GET handler */
 static esp_err_t get_handler(httpd_req_t *req)
 {
     esp_err_t ret;
-    char* response_data = "OK";  // Default response data
-    char* response_code = "200";     // Default HTTP status code
+    char* response_data = req->user_ctx;
+    char* response_code = "200";
 
     if (strcmp(req->uri, "/blink") == 0)
     {
         s_led_state = !s_led_state;
         blink_led();
-        response_data = "Blink toggled";
     }
     else if (strcmp(req->uri, "/drive/w") == 0)
     {
         drive_straight();
-        response_data = "Driving straight";
     }
     else if (strcmp(req->uri, "/drive/a") == 0)
     {
         turn_left();
-        response_data = "Turning left";
     }
     else if (strcmp(req->uri, "/drive/s") == 0)
     {
         drive_backwards();
-        response_data = "Driving backwards";
     }
     else if (strcmp(req->uri, "/drive/d") == 0)
     {
         turn_right();
-        response_data = "Turning right";
     }
     else if (strcmp(req->uri, "/drive/q") == 0)
     {
         stop();
-        response_data = "Stopped";
     }
     else
     {
@@ -169,8 +154,6 @@ static const httpd_uri_t hello = {
     .uri       = "/hello",
     .method    = HTTP_GET,
     .handler   = get_handler,
-    /* Let's pass response string in user
-     * context to demonstrate it's usage */
     .user_ctx  = "Hello World!"
 };
 
@@ -223,7 +206,8 @@ static httpd_handle_t start_webserver(void)
     config.lru_purge_enable = true;
 
     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
-    if (httpd_start(&server, &config) == ESP_OK) {
+    if (httpd_start(&server, &config) == ESP_OK)
+    {
         ESP_LOGI(TAG, "Registering URI handlers");
         httpd_register_uri_handler(server, &hello);
         httpd_register_uri_handler(server, &blink);
