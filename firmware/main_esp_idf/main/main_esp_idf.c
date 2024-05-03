@@ -230,8 +230,10 @@ static esp_err_t stop_webserver(httpd_handle_t server)
     return httpd_stop(server);
 }
 
-static void disconnect_handler(void* arg, esp_event_base_t event_base,
-                               int32_t event_id, void* event_data)
+static void disconnect_handler(void* arg,
+                               esp_event_base_t event_base,
+                               int32_t event_id,
+                               void* event_data)
 {
     httpd_handle_t* server = (httpd_handle_t*) arg;
     if (*server) {
@@ -244,8 +246,10 @@ static void disconnect_handler(void* arg, esp_event_base_t event_base,
     }
 }
 
-static void connect_handler(void* arg, esp_event_base_t event_base,
-                            int32_t event_id, void* event_data)
+static void connect_handler(void* arg,
+                            esp_event_base_t event_base,
+                            int32_t event_id,
+                            void* event_data)
 {
     httpd_handle_t* server = (httpd_handle_t*) arg;
     if (*server == NULL) {
@@ -263,10 +267,10 @@ void app_main(void)
 
     static httpd_handle_t server = NULL;
 
-    ESP_ERROR_CHECK(nvs_flash_init());
-    ESP_ERROR_CHECK(esp_netif_init());
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
-    ESP_ERROR_CHECK(example_connect());
+    ESP_ERROR_CHECK(nvs_flash_init());  // Initialize and verify Non-Volatile Storage
+    ESP_ERROR_CHECK(esp_netif_init());  // Initialize and verify network interfaces
+    ESP_ERROR_CHECK(esp_event_loop_create_default());  // Sets up the default system event loop
+    ESP_ERROR_CHECK(example_connect()); // Configure WiFi
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
 
