@@ -14,3 +14,7 @@ input wifi credentials
 `idf.py build`
 
 `idf.py -p COM6 flash monitor`
+
+## Docs
+https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/protocols/esp_http_server.html
+
