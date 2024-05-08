@@ -270,8 +270,9 @@ void app_main(void)
     ESP_ERROR_CHECK(nvs_flash_init());  // Initialize and verify Non-Volatile Storage
     ESP_ERROR_CHECK(esp_netif_init());  // Initialize and verify network interfaces
     ESP_ERROR_CHECK(esp_event_loop_create_default());  // Sets up the default system event loop
+
     ESP_ERROR_CHECK(example_connect()); // Configure WiFi
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server)); // received IP "event"
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
 
     server = start_webserver();
